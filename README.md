@@ -7,16 +7,25 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Docker Development
-You can also choose to start the application in a Docker environment
 
-First you will need to start with the command `docker build -t <projectname> .`
-This build the image of the application and tags it to a certain name.
+You can also choose to start the application in a Docker environment. If you use the simple exapmle commands, the application will be runned by the names I use for the application.
 
-For example you can use `docker build -t AngularProject .`
+### First (build Image)
 
-Now you want to startup the development server by starting with `docker run -v ${PWD}:/app -p 4201:4200 <projectname>`
+First you will need to start with the command `docker build -t <ProjectName> . --platform=linux/amd64`
+For example you can use `docker build -t client . --platform=linux/amd64`
+This build the image of the application and tags it to a certain name `-t`.
+The platform we are using here ` --platform=linux/amd64` is to make it possible to install linux package. We need this to install the google google-chrome-stable extension to test our application
 
-For exapmle you can use `docker run -v ${PWD}:/app -p 4201:4200 AngularProject`
+### Second (Start Container)
+
+Now you want to startup the development server by starting with `docker run -d -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --name <ContainerName> --rm <projectName>`
+For example you can use `docker run -d -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --name team-trip-advisor-client --rm client`
+
+### Third (Start Tests)
+
+We want to start with the tests for our application. `docker exec -it <ContainerName> ng test --watch=false`
+For Example `docker exec -it team-trip-advisor-client ng test --watch=false`
 
 ## Code scaffolding
 
