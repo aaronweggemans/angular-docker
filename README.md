@@ -27,7 +27,9 @@ For example you can use `docker run -d -v ${PWD}:/app -v /app/node_modules -p 42
 
 Before you can start the tests on SonarQube you need to start a local docker container for managing stuff. To start the local machine, you need to run `docker run -d --name sonarqube --platform linux/amd64 -p 9000:9000 sonarqube`.
 
-To start the sonar tests execute `npm run sonar-scanner`/
+For the Macbook users at Sogeti I recommand to use `docker run -d -p 9000:9000 koolwithk/sonarqube-arm:9.2.4-community`. The problem with the previous command is that is a unstable container when you have a Apple M1 chip.
+
+Now you need to configure your sonarqube environment on `localhost:9000`. Then to start the sonar tests execute `npm run sonar-scanner` after you correctly filled in the sonar-project.properties in de root file!
 
 ## Code scaffolding
 
