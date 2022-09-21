@@ -24,8 +24,9 @@ For example you can use `docker run -d -v ${PWD}:/app -v /app/node_modules -p 42
 
 ### Third (Start Tests)
 
-We want to start with the tests for our application. `docker exec -it <ContainerName> ng test --watch=false`
-For Example `docker exec -it team-trip-advisor-client ng test --watch=false`
+Before you can start the tests on SonarQube you need to start a local docker container for managing stuff. To start the local machine, you need to run `docker run -d --name sonarqube --platform linux/amd64 -p 9000:9000 sonarqube`.
+
+To start the sonar tests execute `npm run sonar-scanner`.
 
 ## Code scaffolding
 
